@@ -1,60 +1,366 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OmniTax - US Federal Income Tax & Refund Estimator</title>
-  <meta name="description" content="100% free US federal income tax calculators. Estimate your IRS tax bracket, tax liability, and tax refund instantly.">
+  
+  <!-- SEO Meta Tags for US Audience -->
+  <title>OmniTax - Advanced US Income Tax, Refund & Self-Employment Suite</title>
+  <meta name="description" content="100% free US federal income tax calculators. Estimate IRS tax brackets, liabilities, tax refunds, and 1099 self-employment taxes instantly.">
+  <meta name="keywords" content="us tax calculator, income tax bracket, tax refund estimator, 1099 tax calculator, irs tax calculator">
+  <meta name="author" content="OmniTax">
+  <meta name="robots" content="index, follow">
+
+  <!-- Google Search Console Verification Tag -->
   <meta name="google-site-verification" content="google45274bc7d9133ca5" />
+
+  <!-- Google AdSense Script -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2805918301542012" crossorigin="anonymous"></script>
+
+  <!-- Favicon SVG -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📋</text></svg>">
+
+  <!-- Google Font: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; color: #1e293b; }
+    body {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+      transition: background-color 0.3s ease;
+    }
+    html.dark body {
+      background: linear-gradient(135deg, #09090b 0%, #0f172a 50%, #1e1b4b 100%);
+      color: #f8fafc;
+    }
+    .pastel-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
+      transition: all 0.3s ease;
+    }
+    html.dark .pastel-card {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #2563eb 0%, #0d9488 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    html.dark .gradient-text {
+      background: linear-gradient(135deg, #60a5fa 0%, #34d399 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between">
-  
-  <header class="bg-white border-b border-slate-200 px-6 py-4">
-    <div class="max-w-5xl mx-auto flex justify-between items-center">
-      <span class="text-xl font-extrabold tracking-tight text-blue-600">OmniTax</span>
-      <span class="text-xs font-bold bg-blue-50 text-blue-600 px-3 py-1 rounded-full">US IRS Tax Tools</span>
+<body class="font-sans min-h-screen flex flex-col antialiased text-slate-800 dark:text-slate-100">
+
+  <!-- TOP NAVBAR -->
+  <header class="sticky top-0 z-50 bg-white/70 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-teal-600 flex items-center justify-center font-black text-xl text-white shadow-md">
+          📋
+        </div>
+        <span class="text-xl font-extrabold tracking-tight text-slate-800 dark:text-white">Omni<span class="gradient-text">Tax</span></span>
+      </a>
+
+      <div class="flex items-center gap-3">
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900">
+          <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span> IRS Tax Intelligence
+        </span>
+        <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+          <span id="themeIcon">🌙</span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main class="max-w-5xl mx-auto px-6 py-12 flex-1 w-full space-y-8">
-    <div class="text-center space-y-3">
-      <h1 class="text-3xl md:text-4xl font-black">US Federal Income Tax & Refund Estimator</h1>
-      <p class="text-slate-500 text-sm max-w-xl mx-auto">Calculate your estimated federal income tax bracket, liability, and year-end tax refunds instantly.</p>
+  <!-- HERO SECTION -->
+  <section class="max-w-7xl mx-auto px-6 pt-10 pb-6 text-center">
+    <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950 px-3 py-1 rounded-full border border-blue-100 dark:border-blue-900 mb-3 inline-block">Advanced US Financial Calculators</span>
+    <h1 class="text-3xl md:text-5xl font-black tracking-tight text-slate-800 dark:text-white mb-3">
+      US Federal Income Tax & <span class="gradient-text">Refund Suite.</span>
+    </h1>
+    <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base max-w-2xl mx-auto font-medium">
+      Accurately estimate your federal tax brackets, tax liabilities, year-end refunds, and 1099 self-employment taxes instantly.
+    </p>
+  </section>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-6 py-6 flex-1 w-full space-y-8">
+
+    <!-- TAB NAVIGATION -->
+    <div class="flex justify-center mb-4">
+      <div class="bg-slate-200/70 dark:bg-slate-800 p-1.5 rounded-2xl flex flex-wrap gap-2 justify-center">
+        <button onclick="switchTab('income')" id="tabBtnIncome" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-sm">💰 Income Tax</button>
+        <button onclick="switchTab('refund')" id="tabBtnRefund" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800">💸 Tax Refund</button>
+        <button onclick="switchTab('self')" id="tabBtnSelf" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800">💼 1099 Self-Employment</button>
+      </div>
     </div>
 
-    <div class="bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6 max-w-2xl mx-auto">
+    <!-- TAB 1: INCOME TAX CALCULATOR -->
+    <div id="tabContentIncome" class="pastel-card p-6 md:p-8 rounded-3xl space-y-6">
       <div>
-        <label class="text-xs font-bold text-slate-600 block mb-1">Annual Gross Income ($):</label>
-        <input type="number" id="salary" value="85000" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <h2 class="text-lg font-black text-slate-800 dark:text-white mb-1">💰 US Federal Income Tax & Bracket Estimator</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Calculate your estimated federal income tax based on annual gross income and filing status.</p>
       </div>
 
-      <button onclick="calcTax()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl text-sm transition shadow-md">
-        Calculate Federal Tax 📊
-      </button>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Annual Gross Income ($):</label>
+          <input type="number" id="incSalary" value="85000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
+        </div>
+        <div>
+          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Filing Status:</label>
+          <select id="incStatus" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
+            <option value="single">Single</option>
+            <option value="married">Married Filing Jointly</option>
+          </select>
+        </div>
+      </div>
 
-      <div id="result" class="hidden bg-slate-50 border border-slate-200 rounded-2xl p-6 text-center space-y-2">
-        <div class="text-xs uppercase font-bold text-slate-400">Estimated Tax Liability:</div>
-        <div id="taxOwed" class="text-3xl font-black text-blue-600">$0</div>
+      <div>
+        <button onclick="calculateIncomeTax()" class="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-bold py-3 px-6 rounded-xl text-xs transition shadow-md">
+          Calculate Federal Tax 📊
+        </button>
+      </div>
+
+      <div id="incomeResult" class="hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+          <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+            <div class="text-[10px] uppercase font-bold text-slate-400">Marginal Tax Bracket</div>
+            <div id="resIncBracket" class="text-2xl font-black text-blue-600 dark:text-blue-400">0%</div>
+          </div>
+          <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+            <div class="text-[10px] uppercase font-bold text-slate-400">Total Tax Liability</div>
+            <div id="resIncTax" class="text-2xl font-black text-red-500">$0</div>
+          </div>
+          <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+            <div class="text-[10px] uppercase font-bold text-slate-400">Effective Tax Rate</div>
+            <div id="resIncEffective" class="text-2xl font-black text-teal-600 dark:text-teal-400">0%</div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- TAB 2: TAX REFUND ESTIMATOR -->
+    <div id="tabContentRefund" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-6">
+      <div>
+        <h2 class="text-lg font-black text-slate-800 dark:text-white mb-1">💸 US Tax Refund vs. Owed Estimator</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Compare total tax liability against total income tax already withheld from your paychecks.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Estimated Total Tax Liability ($):</label>
+          <input type="number" id="refLiability" value="9500" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
+        </div>
+        <div>
+          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Total Federal Tax Withheld ($):</label>
+          <input type="number" id="refWithheld" value="11200" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
+        </div>
+      </div>
+
+      <div>
+        <button onclick="calculateRefund()" class="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-bold py-3 px-6 rounded-xl text-xs transition shadow-md">
+          Calculate Refund / Owed 💵
+        </button>
+      </div>
+
+      <div id="refundResult" class="hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center space-y-2">
+        <div id="resRefundLabel" class="text-[10px] uppercase font-bold text-slate-500">Estimated IRS Refund:</div>
+        <div id="resRefundAmount" class="text-3xl font-black text-emerald-600 dark:text-emerald-400">$0</div>
+        <p id="resRefundDesc" class="text-xs text-slate-600 dark:text-slate-400 mt-1"></p>
+      </div>
+    </div>
+
+    <!-- TAB 3: 1099 SELF-EMPLOYMENT TAX CALCULATOR -->
+    <div id="tabContentSelf" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-6">
+      <div>
+        <h2 class="text-lg font-black text-slate-800 dark:text-white mb-1">💼 1099 Self-Employment Tax Estimator</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Calculate Social Security and Medicare (FICA) self-employment taxes for freelance and independent contractor income.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Net Self-Employment Earnings ($):</label>
+          <input type="number" id="selfEarnings" value="75000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
+        </div>
+        <div>
+          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Business Deductions / Expenses ($):</label>
+          <input type="number" id="selfExpenses" value="5000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
+        </div>
+      </div>
+
+      <div>
+        <button onclick="calculateSelfTax()" class="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-bold py-3 px-6 rounded-xl text-xs transition shadow-md">
+          Calculate Self-Employment Tax 📝
+        </button>
+      </div>
+
+      <div id="selfResult" class="hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+          <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+            <div class="text-[10px] uppercase font-bold text-slate-400">Net Taxable Earnings</div>
+            <div id="resSelfNet" class="text-2xl font-black text-blue-600 dark:text-blue-400">$0</div>
+          </div>
+          <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+            <div class="text-[10px] uppercase font-bold text-slate-400">Estimated SE Tax (15.3% FICA)</div>
+            <div id="resSelfTax" class="text-2xl font-black text-red-500">$0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO ARTICLE SECTION -->
+    <section class="pastel-card p-8 rounded-3xl space-y-4">
+      <h2 class="text-xl font-black text-slate-800 dark:text-white">Navigating US Federal Income Taxes & 1099 Filings</h2>
+      <p class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+        Understanding how federal income taxes and self-employment contributions work in the United States is essential for optimal personal financial planning. From marginal tax brackets and standard deductions to anticipating annual tax refunds or 1099 FICA obligations, accurate forecasting prevents surprises during tax season. <strong>OmniTax</strong> provides independent calculation tools designed to help US taxpayers estimate liabilities efficiently.
+      </p>
+    </section>
+
   </main>
 
-  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-400">
-    © 2026 OmniTax. Independent US Tax Estimators.
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 py-8 text-center text-xs text-slate-500 dark:text-slate-400 font-medium mt-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p>© 2026 OmniTax. Independent US Tax Estimators. Not official IRS tax counsel.</p>
+      <div class="flex gap-6">
+        <a href="privacy.html" class="hover:text-slate-800 dark:hover:text-white transition">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-slate-800 dark:hover:text-white transition">Terms of Service</a>
+        <a href="contact.html" class="hover:text-slate-800 dark:hover:text-white transition">Contact Us</a>
+      </div>
+    </div>
   </footer>
 
+  <!-- JAVASCRIPT LOGIC -->
   <script>
-    function calcTax() {
-      const salary = parseFloat(document.getElementById('salary').value) || 0;
-      const tax = salary * 0.18; // Simplified estimate
-      document.getElementById('taxOwed').innerText = '$' + Math.round(tax).toLocaleString();
-      document.getElementById('result').classList.remove('hidden');
+    function toggleDarkMode() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        document.getElementById('themeIcon').innerText = '🌙';
+      } else {
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+        document.getElementById('themeIcon').innerText = '☀️';
+      }
+    }
+
+    function switchTab(tab) {
+      const tabs = ['income', 'refund', 'self'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1));
+        const con = document.getElementById('tabContent' + t.charAt(0).toUpperCase() + t.slice(1));
+        if (btn && con) {
+          if (t === tab) {
+            btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-sm";
+            con.classList.remove('hidden');
+          } else {
+            btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800";
+            con.classList.add('hidden');
+          }
+        }
+      });
+    }
+
+    function calculateIncomeTax() {
+      const salary = parseFloat(document.getElementById('incSalary').value) || 0;
+      const status = document.getElementById('incStatus').value;
+      const standardDeduction = status === 'single' ? 15000 : 30000;
+      const taxableIncome = Math.max(0, salary - standardDeduction);
+
+      let tax = 0;
+      let bracketName = "10%";
+
+      if (status === 'single') {
+        if (taxableIncome <= 11600) {
+          tax = taxableIncome * 0.10; bracketName = "10%";
+        } else if (taxableIncome <= 47150) {
+          tax = 1160 + (taxableIncome - 11600) * 0.12; bracketName = "12%";
+        } else if (taxableIncome <= 100525) {
+          tax = 5426 + (taxableIncome - 47150) * 0.22; bracketName = "22%";
+        } else if (taxableIncome <= 191950) {
+          tax = 17168 + (taxableIncome - 100525) * 0.24; bracketName = "24%";
+        } else {
+          tax = 39110 + (taxableIncome - 191950) * 0.32; bracketName = "32% +";
+        }
+      } else {
+        if (taxableIncome <= 23200) {
+          tax = taxableIncome * 0.10; bracketName = "10%";
+        } else if (taxableIncome <= 94300) {
+          tax = 2320 + (taxableIncome - 23200) * 0.12; bracketName = "12%";
+        } else if (taxableIncome <= 201050) {
+          tax = 10852 + (taxableIncome - 94300) * 0.22; bracketName = "22%";
+        } else {
+          tax = 34337 + (taxableIncome - 201050) * 0.24; bracketName = "24% +";
+        }
+      }
+
+      const effectiveRate = salary > 0 ? (tax / salary) * 100 : 0;
+
+      document.getElementById('resIncBracket').innerText = bracketName;
+      document.getElementById('resIncTax').innerText = '$' + Math.round(tax).toLocaleString();
+      document.getElementById('resIncEffective').innerText = effectiveRate.toFixed(1) + '%';
+      document.getElementById('incomeResult').classList.remove('hidden');
+    }
+
+    function calculateRefund() {
+      const liability = parseFloat(document.getElementById('refLiability').value) || 0;
+      const withheld = parseFloat(document.getElementById('refWithheld').value) || 0;
+      const diff = withheld - liability;
+      const amountEl = document.getElementById('resRefundAmount');
+      const labelEl = document.getElementById('resRefundLabel');
+      const descEl = document.getElementById('resRefundDesc');
+
+      if (diff >= 0) {
+        labelEl.innerText = "Estimated IRS Tax Refund:";
+        amountEl.className = "text-3xl font-black text-emerald-600 dark:text-emerald-400";
+        amountEl.innerText = '$' + Math.round(diff).toLocaleString();
+        descEl.innerText = "You over-withheld federal taxes during the year and are owed a refund.";
+      } else {
+        labelEl.innerText = "Estimated Tax Balance Owed:";
+        amountEl.className = "text-3xl font-black text-red-600 dark:text-red-400";
+        amountEl.innerText = '$' + Math.round(Math.abs(diff)).toLocaleString();
+        descEl.innerText = "Your withholdings were less than your total liability. You may owe a balance to the IRS.";
+      }
+      document.getElementById('refundResult').classList.remove('hidden');
+    }
+
+    function calculateSelfTax() {
+      const earnings = parseFloat(document.getElementById('selfEarnings').value) || 0;
+      const expenses = parseFloat(document.getElementById('selfExpenses').value) || 0;
+      const netEarnings = Math.max(0, earnings - expenses);
+      
+      // Self-employment tax rate is generally 15.3% on 92.35% of net earnings
+      const seTaxable = netEarnings * 0.9235;
+      const seTax = seTaxable * 0.153;
+
+      document.getElementById('resSelfNet').innerText = '$' + Math.round(netEarnings).toLocaleString();
+      document.getElementById('resSelfTax').innerText = '$' + Math.round(seTax).toLocaleString();
+      document.getElementById('selfResult').classList.remove('hidden');
     }
   </script>
 </body>
