@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://omnitax-three.vercel.app/sitemap.xml

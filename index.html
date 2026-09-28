@@ -5,17 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO Meta Tags for US Audience -->
-  <title>OmniTax - Advanced US Income Tax, Refund & Self-Employment Suite</title>
-  <meta name="description" content="100% free US federal income tax calculators. Estimate IRS tax brackets, liabilities, tax refunds, and 1099 self-employment taxes instantly.">
-  <meta name="keywords" content="us tax calculator, income tax bracket, tax refund estimator, 1099 tax calculator, irs tax calculator">
+  <title>OmniTax - 2026 US Federal Tax, Refund, 1099 & Capital Gains Suite</title>
+  <meta name="description" content="100% free US federal tax calculators. Estimate IRS tax brackets, tax liabilities, year-end refunds, 1099 self-employment FICA, and capital gains taxes instantly.">
+  <meta name="keywords" content="us tax calculator, 2026 income tax brackets, tax refund estimator, 1099 self employment tax calculator, capital gains tax calculator, irs tax calculator">
   <meta name="author" content="OmniTax">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  
+  <!-- Canonical Tag -->
+  <link rel="canonical" href="https://omnitax-three.vercel.app/">
 
   <!-- Google Search Console Verification Tag -->
   <meta name="google-site-verification" content="google45274bc7d9133ca5" />
 
   <!-- Google AdSense Script -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2805918301542012" crossorigin="anonymous"></script>
+
+  <!-- Schema.org JSON-LD for Financial Web Application -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "OmniTax US Tax Calculator Suite",
+    "url": "https://omnitax.vercel.app/",
+    "description": "Free US federal income tax, tax refund, 1099 self-employment, and capital gains tax estimation suite.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
 
   <!-- Favicon SVG -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📋</text></svg>">
@@ -87,7 +108,7 @@
 
       <div class="flex items-center gap-3">
         <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900">
-          <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span> IRS Tax Intelligence
+          <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span> US IRS Intelligence Suite
         </span>
         <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
           <span id="themeIcon">🌙</span>
@@ -98,12 +119,12 @@
 
   <!-- HERO SECTION -->
   <section class="max-w-7xl mx-auto px-6 pt-10 pb-6 text-center">
-    <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950 px-3 py-1 rounded-full border border-blue-100 dark:border-blue-900 mb-3 inline-block">Advanced US Financial Calculators</span>
+    <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950 px-3 py-1 rounded-full border border-blue-100 dark:border-blue-900 mb-3 inline-block">High-CPC US Financial Instruments</span>
     <h1 class="text-3xl md:text-5xl font-black tracking-tight text-slate-800 dark:text-white mb-3">
-      US Federal Income Tax & <span class="gradient-text">Refund Suite.</span>
+      US Federal Tax & <span class="gradient-text">Financial Estimator Suite.</span>
     </h1>
     <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base max-w-2xl mx-auto font-medium">
-      Accurately estimate your federal tax brackets, tax liabilities, year-end refunds, and 1099 self-employment taxes instantly.
+      Accurately calculate federal income tax brackets, year-end refunds, 1099 self-employment liabilities, and investment capital gains instantly.
     </p>
   </section>
 
@@ -115,7 +136,8 @@
       <div class="bg-slate-200/70 dark:bg-slate-800 p-1.5 rounded-2xl flex flex-wrap gap-2 justify-center">
         <button onclick="switchTab('income')" id="tabBtnIncome" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-sm">💰 Income Tax</button>
         <button onclick="switchTab('refund')" id="tabBtnRefund" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800">💸 Tax Refund</button>
-        <button onclick="switchTab('self')" id="tabBtnSelf" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800">💼 1099 Self-Employment</button>
+        <button onclick="switchTab('self')" id="tabBtnSelf" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800">💼 1099 Self-Employed</button>
+        <button onclick="switchTab('capital')" id="tabBtnCapital" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800">📈 Capital Gains</button>
       </div>
     </div>
 
@@ -233,11 +255,49 @@
       </div>
     </div>
 
+    <!-- TAB 4: CAPITAL GAINS TAX CALCULATOR -->
+    <div id="tabContentCapital" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-6">
+      <div>
+        <h2 class="text-lg font-black text-slate-800 dark:text-white mb-1">📈 US Investment Capital Gains Tax Estimator</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Estimate federal tax liability on stock, real estate, or cryptocurrency capital gains.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Capital Gain Profit ($):</label>
+          <input type="number" id="capProfit" value="25000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
+        </div>
+        <div>
+          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Holding Period:</label>
+          <select id="capHolding" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
+            <option value="long">Long-Term (> 1 Year)</option>
+            <option value="short">Short-Term (≤ 1 Year)</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Annual Ordinary Income ($):</label>
+          <input type="number" id="capIncome" value="70000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
+        </div>
+      </div>
+
+      <div>
+        <button onclick="calculateCapitalGains()" class="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-bold py-3 px-6 rounded-xl text-xs transition shadow-md">
+          Calculate Capital Gains Tax 📈
+        </button>
+      </div>
+
+      <div id="capitalResult" class="hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center space-y-2">
+        <div class="text-[10px] uppercase font-bold text-slate-500">Estimated Capital Gains Tax:</div>
+        <div id="resCapTax" class="text-3xl font-black text-amber-600 dark:text-amber-400">$0</div>
+        <p id="resCapDesc" class="text-xs text-slate-600 dark:text-slate-400 mt-1"></p>
+      </div>
+    </div>
+
     <!-- SEO ARTICLE SECTION -->
     <section class="pastel-card p-8 rounded-3xl space-y-4">
-      <h2 class="text-xl font-black text-slate-800 dark:text-white">Navigating US Federal Income Taxes & 1099 Filings</h2>
+      <h2 class="text-xl font-black text-slate-800 dark:text-white">Navigating US Federal Income Taxes & IRS Compliance</h2>
       <p class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-        Understanding how federal income taxes and self-employment contributions work in the United States is essential for optimal personal financial planning. From marginal tax brackets and standard deductions to anticipating annual tax refunds or 1099 FICA obligations, accurate forecasting prevents surprises during tax season. <strong>OmniTax</strong> provides independent calculation tools designed to help US taxpayers estimate liabilities efficiently.
+        Understanding how federal income taxes, self-employment FICA contributions, and investment capital gains work in the United States is essential for optimal personal financial planning. From marginal tax brackets and standard deductions to anticipating annual tax refunds or capital gains obligations, accurate forecasting prevents surprises during tax season. <strong>OmniTax</strong> provides independent calculation tools designed to help US taxpayers estimate liabilities efficiently.
       </p>
     </section>
 
@@ -270,7 +330,7 @@
     }
 
     function switchTab(tab) {
-      const tabs = ['income', 'refund', 'self'];
+      const tabs = ['income', 'refund', 'self', 'capital'];
       tabs.forEach(t => {
         const btn = document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1));
         const con = document.getElementById('tabContent' + t.charAt(0).toUpperCase() + t.slice(1));
@@ -354,13 +414,35 @@
       const expenses = parseFloat(document.getElementById('selfExpenses').value) || 0;
       const netEarnings = Math.max(0, earnings - expenses);
       
-      // Self-employment tax rate is generally 15.3% on 92.35% of net earnings
       const seTaxable = netEarnings * 0.9235;
       const seTax = seTaxable * 0.153;
 
       document.getElementById('resSelfNet').innerText = '$' + Math.round(netEarnings).toLocaleString();
       document.getElementById('resSelfTax').innerText = '$' + Math.round(seTax).toLocaleString();
       document.getElementById('selfResult').classList.remove('hidden');
+    }
+
+    function calculateCapitalGains() {
+      const profit = parseFloat(document.getElementById('capProfit').value) || 0;
+      const holding = document.getElementById('capHolding').value;
+      const income = parseFloat(document.getElementById('capIncome').value) || 0;
+
+      let taxRate = 0;
+      if (holding === 'long') {
+        if (income <= 47025) taxRate = 0.0;
+        else if (income <= 518900) taxRate = 0.15;
+        else taxRate = 0.20;
+      } else {
+        // Short-term taxed at ordinary income rates (approx 22%)
+        taxRate = 0.22;
+      }
+
+      const capTax = profit * taxRate;
+      document.getElementById('resCapTax').innerText = '$' + Math.round(capTax).toLocaleString();
+      document.getElementById('resCapDesc').innerText = holding === 'long' 
+        ? `Applied long-term capital gains tax rate of ${(taxRate * 100)}%.` 
+        : `Applied short-term capital gains tax rate (ordinary income bracket estimation).`;
+      document.getElementById('capitalResult').classList.remove('hidden');
     }
   </script>
 </body>
