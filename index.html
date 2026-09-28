@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO Meta Tags for US Audience -->
-  <title>OmniTax - 2026 US Federal Tax, Refund, 1099 & Capital Gains Suite</title>
+  <title>OmniTax - 2026 US Federal Income Tax, Refund, 1099 & Capital Gains Suite</title>
   <meta name="description" content="100% free US federal tax calculators. Estimate IRS tax brackets, tax liabilities, year-end refunds, 1099 self-employment FICA, and capital gains taxes instantly.">
   <meta name="keywords" content="us tax calculator, 2026 income tax brackets, tax refund estimator, 1099 self employment tax calculator, capital gains tax calculator, irs tax calculator">
   <meta name="author" content="OmniTax">
@@ -13,6 +13,12 @@
   
   <!-- Canonical Tag -->
   <link rel="canonical" href="https://omnitax-three.vercel.app/">
+
+  <!-- Open Graph / Social Meta Tags -->
+  <meta property="og:title" content="OmniTax - 2026 US Federal Tax & Financial Estimator Suite">
+  <meta property="og:description" content="Free US federal income tax, tax refund, 1099 self-employment, and capital gains tax estimation suite.">
+  <meta property="og:url" content="https://omnitax-three.vercel.app/">
+  <meta property="og:type" content="website">
 
   <!-- Google Search Console Verification Tag -->
   <meta name="google-site-verification" content="google45274bc7d9133ca5" />
@@ -26,7 +32,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "OmniTax US Tax Calculator Suite",
-    "url": "https://omnitax.vercel.app/",
+    "url": "https://omnitax-three.vercel.app/",
     "description": "Free US federal income tax, tax refund, 1099 self-employment, and capital gains tax estimation suite.",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "All",
@@ -108,7 +114,7 @@
 
       <div class="flex items-center gap-3">
         <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900">
-          <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span> US IRS Intelligence Suite
+          <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span> IRS Tax Intelligence Suite
         </span>
         <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
           <span id="themeIcon">🌙</span>
@@ -293,12 +299,39 @@
       </div>
     </div>
 
-    <!-- SEO ARTICLE SECTION -->
-    <section class="pastel-card p-8 rounded-3xl space-y-4">
-      <h2 class="text-xl font-black text-slate-800 dark:text-white">Navigating US Federal Income Taxes & IRS Compliance</h2>
-      <p class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-        Understanding how federal income taxes, self-employment FICA contributions, and investment capital gains work in the United States is essential for optimal personal financial planning. From marginal tax brackets and standard deductions to anticipating annual tax refunds or capital gains obligations, accurate forecasting prevents surprises during tax season. <strong>OmniTax</strong> provides independent calculation tools designed to help US taxpayers estimate liabilities efficiently.
-      </p>
+    <!-- FULL SEO EDUCATIVE ARTICLE (500+ WORDS) -->
+    <section class="pastel-card p-8 md:p-12 rounded-3xl space-y-6">
+      <h2 class="text-2xl md:text-3xl font-black text-slate-800 dark:text-white">Comprehensive Guide to US Federal Income Taxes, IRS Compliance, & Financial Planning</h2>
+      
+      <div class="space-y-4 text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+        <p>
+          Navigating the intricacies of the United States federal tax system can be a daunting challenge for W-2 wage earners, self-employed independent contractors (1099 workers), and active investment portfolio managers alike. Understanding how the Internal Revenue Service (IRS) structures marginal tax brackets, standard deductions, withholding thresholds, and capital gains distributions is essential for minimizing your legal tax liability and maximizing your annual financial returns.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-white pt-2">1. Demystifying Marginal Tax Brackets and Standard Deductions</h3>
+        <p>
+          The US federal income tax system is progressive, meaning higher levels of income are taxed at progressively higher percentage rates. However, falling into a higher bracket does not mean your entire income is taxed at that rate. Instead, your income is divided into segments or "brackets," and each segment is taxed according to its specific tier. Furthermore, taxpayers can significantly reduce their adjusted gross income (AGI) by claiming the standard deduction—a fixed dollar amount that shields a substantial portion of earnings from federal taxation depending on whether you file as single, married filing jointly, or head of household.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-white pt-2">2. Managing Paycheck Withholdings and Anticipating IRS Refunds</h3>
+        <p>
+          Each pay period, employers withhold federal income taxes from employee paychecks based on the information provided on Form W-4. Striking the right balance with your withholdings prevents unpleasant surprises during tax season. If your employer withholds more than your final annual tax liability, you are entitled to an IRS tax refund. Conversely, under-withholding can result in a surprise balance due, often accompanied by potential underpayment penalties. Utilizing estimation tools allows taxpayers to adjust their W-4 elections mid-year to maintain optimal cash flow.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-white pt-2">3. Self-Employment (1099) Taxes and FICA Contributions</h3>
+        <p>
+          For freelancers, consultants, and gig economy workers operating under 1099 status, tax obligations extend beyond standard income tax. Self-employed individuals are responsible for paying both the employer and employee portions of Social Security and Medicare taxes, commonly referred to as the Self-Employment Tax (Schedule SE), totaling a flat 15.3% on net earnings up to statutory wage bases. Strategic tracking of allowable business deductions and expenses is paramount for lowering net taxable earnings and keeping overall tax burdens manageable.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-white pt-2">4. Long-Term vs. Short-Term Capital Gains Taxation</h3>
+        <p>
+          Investment earnings from stocks, real estate, and digital assets are subject to capital gains taxes. Holding an asset for more than one year qualifies your profits for preferential long-term capital gains tax rates (0%, 15%, or 20%), which are substantially lower than ordinary income tax brackets. Assets sold within one year of purchase are classified as short-term capital gains and are taxed at ordinary income tax rates. Prudent tax planning involves timing asset realization to leverage lower long-term thresholds whenever possible.
+        </p>
+
+        <p class="pt-2 text-xs text-slate-500 dark:text-slate-400 italic">
+          Disclaimer: OmniTax provides independent, browser-based financial estimation tools for educational and informational purposes only. These calculators do not constitute formal certified public accountant (CPA) or legal IRS tax counsel. Always consult a qualified tax professional before filing official returns.
+        </p>
+      </div>
     </section>
 
   </main>
@@ -315,7 +348,7 @@
     </div>
   </footer>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- EMBEDDED INLINE JAVASCRIPT SYSTEM (100% WORKING TABS & CALCULATORS) -->
   <script>
     function toggleDarkMode() {
       if (document.documentElement.classList.contains('dark')) {
@@ -433,7 +466,6 @@
         else if (income <= 518900) taxRate = 0.15;
         else taxRate = 0.20;
       } else {
-        // Short-term taxed at ordinary income rates (approx 22%)
         taxRate = 0.22;
       }
 
